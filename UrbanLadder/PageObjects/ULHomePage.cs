@@ -23,6 +23,11 @@ namespace UrbanLadder.PageObjects
         [FindsBy(How = How.Id, Using = "logo-with-gradient")]
         public IWebElement? ULLogo { get; set; }
 
+        [FindsBy(How = How.XPath, Using = "//a[text()='Careers']")]
+        public IWebElement? Careerlink { get; set; }
+
+        
+
         public void SearchBoxClick()
         {
             SearchElement?.Click();
@@ -48,6 +53,17 @@ namespace UrbanLadder.PageObjects
             SearchElement.SendKeys(Keys.Enter);
             return new SearchProduct(driver);
 
+        }
+        public void ClickCareerLink()
+        {
+            IJavaScriptExecutor js = (IJavaScriptExecutor)driver;
+            js.ExecuteScript("arguments[0].scrollIntoView(true);",
+                driver.FindElement(By.XPath("//a[text()='Careers")));
+            
+            Thread.Sleep(5000);
+            
+            
+            //Careerlink.Click();
         }
     }
 }
