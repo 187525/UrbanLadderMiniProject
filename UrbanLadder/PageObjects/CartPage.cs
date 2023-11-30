@@ -1,0 +1,58 @@
+﻿using OpenQA.Selenium;
+using SeleniumExtras.PageObjects;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace UrbanLadder.PageObjects
+{
+    internal class CartPage
+    {
+        IWebDriver driver;
+
+        public CartPage(IWebDriver driver)
+        {
+            this.driver = driver;
+            PageFactory.InitElements(driver, this);
+        }
+            [FindsBy(How = How.XPath, Using = "//select[@id='select_0_quantity']")]
+            private IWebElement QtyClick { get; set; }
+
+            [FindsBy(How = How.XPath, Using = "//select[@id='select_0_quantity']/option[@value=2]")]
+            private IWebElement QtySelect { get; set; }
+
+        [FindsBy(How = How.XPath, Using = "(//button[@id='checkout-link'])[1]")]
+        private IWebElement CheckOutBtn { get; set; }
+
+        [FindsBy(How = How.ClassName, Using = "icofont-cross_thin")]
+        private IWebElement RemoveFromCartBtn { get; set; }
+
+        [FindsBy(How = How.XPath, Using = "//a[text()='Continue shopping']")]
+        private IWebElement ContinueShoppingBtn { get; set; }
+
+       public void ClickQtyBtn()
+        {
+            QtyClick.Click();
+        }
+        public void ClickQtySelect() 
+        {
+            QtySelect.Click();
+        }
+
+        public void ClickCheckoutBtn()
+        {
+            CheckOutBtn.Click();
+        }
+        public void ClickRemoveFromCartBtn()
+        {
+            RemoveFromCartBtn.Click();
+        }
+
+        public void ClickContinueShoppingBtn()
+        {
+            ContinueShoppingBtn.Click();
+        }
+    }
+}
