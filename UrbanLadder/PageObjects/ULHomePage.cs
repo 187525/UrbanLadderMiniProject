@@ -1,10 +1,12 @@
 ﻿using OpenQA.Selenium;
+using OpenQA.Selenium.Support.Extensions;
 using SeleniumExtras.PageObjects;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using UrbanLadder.Utilities;
 
 namespace UrbanLadder.PageObjects
 {
@@ -56,10 +58,9 @@ namespace UrbanLadder.PageObjects
         }
         public void ClickCareerLink()
         {
-            IJavaScriptExecutor js = (IJavaScriptExecutor)driver;
-            js.ExecuteScript("arguments[0].scrollIntoView(true);",
-                driver.FindElement(By.XPath("//a[text()='Careers")));
-            
+            IWebElement element = driver.FindElement(By.XPath("//a[text()='Careers']"));
+            CoreCodes.ScrollIntoView(driver, element);  
+            ((IJavaScriptExecutor)driver).ExecuteScript("arguments[0].click()",element);
             Thread.Sleep(5000);
             
             
