@@ -22,7 +22,7 @@ namespace UrbanLadder.PageObjects
         [FindsBy(How = How.Id, Using = "search")]
         public IWebElement? SearchElement { get; set; }
 
-        [FindsBy(How = How.Id, Using = "logo-with-gradient")]
+        [FindsBy(How = How.ClassName, Using = "header__topBar_logo")]
         public IWebElement? ULLogo { get; set; }
 
         [FindsBy(How = How.XPath, Using = "//a[text()='Careers']")]
@@ -65,6 +65,13 @@ namespace UrbanLadder.PageObjects
             
             
             //Careerlink.Click();
+        }
+        public void ClickContactUsPage()
+        {
+            IWebElement element = driver.FindElement(By.XPath("//a[text()='Contact Us']"));
+            CoreCodes.ScrollIntoView(driver, element);
+            ((IJavaScriptExecutor)driver).ExecuteScript("arguments[0].click()", element);
+            Thread.Sleep(5000);
         }
     }
 }

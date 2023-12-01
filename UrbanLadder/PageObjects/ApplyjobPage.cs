@@ -1,4 +1,5 @@
 ﻿using OpenQA.Selenium;
+using OpenQA.Selenium.Support.UI;
 using SeleniumExtras.PageObjects;
 using System;
 using System.Collections.Generic;
@@ -48,17 +49,25 @@ namespace UrbanLadder.PageObjects
         [FindsBy(How = How.XPath, Using = "//select[@name='custom_9436']//option[@value='Job Portal']")]
         public IWebElement? OpportunitySelect { get; set; }
 
-        
+        [FindsBy(How = How.ClassName, Using = "css-10c38q4")]
+        public IWebElement? submitBtn { get; set; }
+
+
 
         public void ClickApplyJobBtn()
         {
             IWebElement element = driver.FindElement(By.XPath("//*[@id=\"__next\"]/div/div/div[1]/div/div[4]/div/div[1]/button"));
             CoreCodes.ScrollIntoView(driver, element);
-            Thread.Sleep(2000);
-           element.Click();
+            DefaultWait<IWebDriver> fluentwait = new DefaultWait<IWebDriver>(driver);
+            fluentwait.Timeout = TimeSpan.FromSeconds(5);
+            fluentwait.PollingInterval = TimeSpan.FromSeconds(5);
+            fluentwait.IgnoreExceptionTypes(typeof(NoSuchElementException));
+            fluentwait.Message = "Element does not found";
+            //Thread.Sleep(2000);
+            element.Click();
         }
 
-        public void SubmitBtn(string firstname, string lastname, string email, string mobilenumber, string currentCTC, string expectedCTC, string joining, string opportunity)
+        public void ClickSubmitBtn(string firstname, string lastname, string email, string mobilenumber, string currentCTC, string expectedCTC, string joining)
         {
 
             Firstname?.SendKeys(firstname);
@@ -69,9 +78,33 @@ namespace UrbanLadder.PageObjects
             ExpectedCTC?.SendKeys(expectedCTC);
             Joining?.SendKeys(joining);
 
-            Thread.Sleep(3000);
-            
+            DefaultWait<IWebDriver> fluentwait = new DefaultWait<IWebDriver>(driver);
+            fluentwait.Timeout = TimeSpan.FromSeconds(5);
+            fluentwait.PollingInterval = TimeSpan.FromSeconds(5);
+            fluentwait.IgnoreExceptionTypes(typeof(NoSuchElementException));
+            fluentwait.Message = "Element does not found";
+
+            //Thread.Sleep(3000);
 
         }
+        public void ClickOpportunity()
+        {
+            OpportunityClick?.Click();
+            DefaultWait<IWebDriver> fluentwait = new DefaultWait<IWebDriver>(driver);
+            fluentwait.Timeout = TimeSpan.FromSeconds(5);
+            fluentwait.PollingInterval = TimeSpan.FromSeconds(5);
+            fluentwait.IgnoreExceptionTypes(typeof(NoSuchElementException));
+            fluentwait.Message = "Element does not found";
+        }
+        public void ClickOpportunitySelect()
+        {
+            OpportunitySelect?.Click();
+            DefaultWait<IWebDriver> fluentwait = new DefaultWait<IWebDriver>(driver);
+            fluentwait.Timeout = TimeSpan.FromSeconds(5);
+            fluentwait.PollingInterval = TimeSpan.FromSeconds(5);
+            fluentwait.IgnoreExceptionTypes(typeof(NoSuchElementException));
+            fluentwait.Message = "Element does not found";
+        }
+
      }
 }

@@ -55,10 +55,29 @@ namespace UrbanLadder.TestScripts
             driver.SwitchTo().Window(nextTab[1]);
             TakeScreenShot();
 
+            try
+            {
+                //string url = driver.GetCurrenturl();
+                Assert.That(driver.Url.Contains("jobs"));
+
+                Log.Information("Redirection Test passed");
+
+                test = extent.CreateTest("Redirection Test");
+                test.Pass("Redirection Test Success");
+
+            }
+            catch (AssertionException ex)
+            {
+                Log.Error($"Test failed for Redirection Failed. \n Exception: {ex.Message}");
+
+                test = extent.CreateTest("Redirection Test");
+                test.Fail("Redirection Test failed");
+            }
+
             var applyjobpage=new ApplyJobPage(driver);
 
             applyjobpage.ClickApplyJobBtn();
-            Thread.Sleep(4000);
+            Thread.Sleep(6000);
 
             string currDir = Directory.GetParent(@"../../../").FullName;
             string? excelFilePath = currDir + "/TestData/InputData.xlsx";
@@ -75,10 +94,16 @@ namespace UrbanLadder.TestScripts
                 string? expectedCTC = excelData?.ExpectedCTC;
                 string? joining=excelData?.Joining;
 
-               
-                applyjobpage.SubmitBtn(firstname,lastname,email,mobilenumber,cuurentCTC, expectedCTC,joining);
+
+                applyjobpage.ClickSubmitBtn(firstname,lastname,email,mobilenumber,cuurentCTC,expectedCTC, joining);
                 Log.Information("Values Assigned");
                 Thread.Sleep(2000);
+
+
+                applyjobpage.ClickOpportunity();
+                Thread.Sleep(3000);
+                applyjobpage.ClickOpportunitySelect();
+                Thread.Sleep(3000);
             }
 
 
