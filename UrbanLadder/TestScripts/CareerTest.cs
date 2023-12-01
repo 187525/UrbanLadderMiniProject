@@ -37,14 +37,57 @@ namespace UrbanLadder.TestScripts
             homepage.ClickCareerLink();
             Thread.Sleep(2000);
 
-            var jobopeningspage=new JobOpeningsPage(driver);
-            jobopeningspage.Clicklocationselect();
+            List<string> nextTab = driver.WindowHandles.ToList();
+            driver.SwitchTo().Window(nextTab[1]);
+            TakeScreenShot();
+
+
+            var jobopeningspage =new JobOpeningsPage(driver);
+            jobopeningspage.clicklocationselect();
             Thread.Sleep(2000);
             jobopeningspage.ClickSelectLocation();
             Thread.Sleep(2000);
             jobopeningspage.ClickViewJobBtn();
+         
             Thread.Sleep(2000);
+
+            List<string> nextTab1 = driver.WindowHandles.ToList();
+            driver.SwitchTo().Window(nextTab[1]);
+            TakeScreenShot();
+
+            var applyjobpage=new ApplyJobPage(driver);
+
+            applyjobpage.ClickApplyJobBtn();
+            Thread.Sleep(4000);
+
+            string currDir = Directory.GetParent(@"../../../").FullName;
+            string? excelFilePath = currDir + "/TestData/InputData.xlsx";
+            string? sheetName1 = "ApplyJobDetails";
+            List<ExcelDataJob> excelDataList = ExcelUtilities.ReadExcelDataJob(excelFilePath, sheetName1);
+
+            foreach (var excelData in excelDataList)
+            {
+                string? firstname = excelData?.Firstname;
+                string? lastname = excelData?.Lastname;
+                string? email = excelData?.Email;
+                string? mobilenumber = excelData?.Mobilenumber;
+                string? cuurentCTC = excelData?.CurrentCTC;
+                string? expectedCTC = excelData?.ExpectedCTC;
+                string? joining=excelData?.Joining;
+
+               
+                applyjobpage.SubmitBtn(firstname,lastname,email,mobilenumber,cuurentCTC, expectedCTC,joining);
+                Log.Information("Values Assigned");
+                Thread.Sleep(2000);
+            }
+
+
+
+
+
         }
-        }
+
+
+    }
     }
 

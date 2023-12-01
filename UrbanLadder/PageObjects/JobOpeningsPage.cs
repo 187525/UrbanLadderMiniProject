@@ -19,21 +19,22 @@ namespace UrbanLadder.PageObjects
         }
 
         [FindsBy(How = How.XPath, Using = "//div[@class='chakra-select__wrapper css-18t8j5a']//select[@name='location']")]
-        public IWebElement? ClickLocation { get; set; }
+       public IWebElement? ClickLocation { get; set; }
         
-        [FindsBy(How = How.XPath, Using = "//option[@value='chennai']")]
+        [FindsBy(How = How.XPath, Using = "(//select[@name='location'])//child::option[3]")]
         public IWebElement? SelectLocation { get; set; }
 
         [FindsBy(How = How.XPath, Using = "//*[@id=\"__next\"]/div/div/div[1]/div/div[2]/div[2]/div[2]/div/div/a")]
         public IWebElement? ViewJobBtn { get; set; }
 
-        public void Clicklocationselect()
+        public void clicklocationselect()
         {
-            //IWebElement element = driver.FindElement(By.XPath("//select[@class='chakra-select css-1rhc2ow']"));
-            //CoreCodes.ScrollIntoView(driver, element);
-            //((IJavaScriptExecutor)driver).ExecuteScript("arguments[0].click()", element);
-            //Thread.Sleep(5000);
-            ClickLocation?.Click();
+            IWebElement element = driver.FindElement(By.XPath("//div[select[@name='location']]"));
+            CoreCodes.ScrollIntoView(driver, element);
+            Thread.Sleep(2000);
+            ((IJavaScriptExecutor)driver).ExecuteScript("arguments[0].click()", element);
+            Thread.Sleep(5000);
+           // ClickLocation?.Click();
         }
 
 

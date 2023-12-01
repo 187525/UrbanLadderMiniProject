@@ -5,13 +5,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using UrbanLadder.Utilities;
 
 namespace UrbanLadder.PageObjects
 {
     internal class ApplyJobPage
     {
         IWebDriver driver;
-        public  ApplyJobPage(IWebDriver? driver)
+        public ApplyJobPage(IWebDriver? driver)
         {
             this.driver = driver;
             PageFactory.InitElements(driver, this);
@@ -36,7 +37,7 @@ namespace UrbanLadder.PageObjects
         public IWebElement? CurrentCTC { get; set; }
 
         [FindsBy(How = How.Id, Using = "field-6")]
-        public IWebElement? ExpectedCTC{ get; set; }
+        public IWebElement? ExpectedCTC { get; set; }
 
         [FindsBy(How = How.Id, Using = "field-7")]
         public IWebElement? Joining { get; set; }
@@ -47,23 +48,30 @@ namespace UrbanLadder.PageObjects
         [FindsBy(How = How.XPath, Using = "//select[@name='custom_9436']//option[@value='Job Portal']")]
         public IWebElement? OpportunitySelect { get; set; }
 
+        
+
         public void ClickApplyJobBtn()
         {
-            ApplyNowBtn.Click();
+            IWebElement element = driver.FindElement(By.XPath("//*[@id=\"__next\"]/div/div/div[1]/div/div[4]/div/div[1]/button"));
+            CoreCodes.ScrollIntoView(driver, element);
+            Thread.Sleep(2000);
+           element.Click();
         }
 
-
-
-
-
-
-
-        public void SearchBoxClick()
+        public void SubmitBtn(string firstname, string lastname, string email, string mobilenumber, string currentCTC, string expectedCTC, string joining, string opportunity)
         {
-            SearchElement?.Click();
-        }
 
-        public void ULLogoClick()
-        {
+            Firstname?.SendKeys(firstname);
+            Lastname?.SendKeys(lastname);
+            Email?.SendKeys(email);
+            MobileNumber?.SendKeys(mobilenumber);
+            CurrentCTC?.SendKeys(currentCTC);
+            ExpectedCTC?.SendKeys(expectedCTC);
+            Joining?.SendKeys(joining);
+
+            Thread.Sleep(3000);
+            
+
         }
+     }
 }
