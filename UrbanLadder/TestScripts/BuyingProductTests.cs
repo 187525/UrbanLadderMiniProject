@@ -60,8 +60,8 @@ namespace UrbanLadder.TestScripts
 
             //FluentWait
             DefaultWait<IWebDriver> fluentwait = new DefaultWait<IWebDriver>(driver);
-            fluentwait.Timeout = TimeSpan.FromSeconds(5);
-            fluentwait.PollingInterval = TimeSpan.FromSeconds(5);
+            fluentwait.Timeout = TimeSpan.FromSeconds(10);
+            fluentwait.PollingInterval = TimeSpan.FromSeconds(10);
             fluentwait.IgnoreExceptionTypes(typeof(NoSuchElementException));
             fluentwait.Message = "Element does not found";
 
@@ -100,10 +100,10 @@ namespace UrbanLadder.TestScripts
 
             cartpage.ClickQtyBtn();
             Log.Information("Clicked on the Quantity dropdown");
-            Thread.Sleep(3000);
+            //Thread.Sleep(3000);
             cartpage.ClickQtySelect();
             Log.Information("Selected the Quantity");
-            Thread.Sleep(1000);
+            //Thread.Sleep(1000);
             cartpage.ClickCheckoutBtn();
             Log.Information("Clicked Checkout Button");
             //Fluent
@@ -153,7 +153,7 @@ namespace UrbanLadder.TestScripts
                 //  Console.WriteLine($"First Name: {firstName}, Last Name: {lastName}, Email: {email}, Password: {pwd}, Confirm Password: {conpwd}, Mobile Number: {mbno}");
                addresspage.ClickSaveAndContiue(email, pincode, address, firstname, lastname, mbno);
                 Log.Information("Values Assigned");
-                Thread.Sleep(2000);
+                //Thread.Sleep(2000);
             }
 
 

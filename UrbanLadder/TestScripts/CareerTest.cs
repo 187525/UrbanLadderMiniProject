@@ -1,4 +1,6 @@
-﻿using Serilog;
+﻿using OpenQA.Selenium.Support.UI;
+using OpenQA.Selenium;
+using Serilog;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -77,6 +79,7 @@ namespace UrbanLadder.TestScripts
             var applyjobpage=new ApplyJobPage(driver);
 
             applyjobpage.ClickApplyJobBtn();
+            Log.Information("Clicked Applyjob Button");
             Thread.Sleep(6000);
 
             string currDir = Directory.GetParent(@"../../../").FullName;
@@ -98,12 +101,30 @@ namespace UrbanLadder.TestScripts
                 applyjobpage.ClickSubmitBtn(firstname,lastname,email,mobilenumber,cuurentCTC,expectedCTC, joining);
                 Log.Information("Values Assigned");
                 Thread.Sleep(2000);
+                //DefaultWait<IWebDriver> fluentwait = new DefaultWait<IWebDriver>(driver);
+                //fluentwait.Timeout = TimeSpan.FromSeconds(5);
+                //fluentwait.PollingInterval = TimeSpan.FromSeconds(5);
+                //fluentwait.IgnoreExceptionTypes(typeof(NoSuchElementException));
+                //fluentwait.Message = "Element does not found";
 
 
                 applyjobpage.ClickOpportunity();
+                Log.Information("Opprotunity Clicked");
                 Thread.Sleep(3000);
+                //DefaultWait<IWebDriver> fluentwait2 = new DefaultWait<IWebDriver>(driver);
+                //fluentwait.Timeout = TimeSpan.FromSeconds(10);
+                //fluentwait.PollingInterval = TimeSpan.FromSeconds(10);
+                //fluentwait.IgnoreExceptionTypes(typeof(NoSuchElementException));
+                //fluentwait.Message = "Element does not found";
+
                 applyjobpage.ClickOpportunitySelect();
+                Log.Information("Opportunity selected");
                 Thread.Sleep(3000);
+                //DefaultWait<IWebDriver> fluentwait3 = new DefaultWait<IWebDriver>(driver);
+                //fluentwait.Timeout = TimeSpan.FromSeconds(10);
+                //fluentwait.PollingInterval = TimeSpan.FromSeconds(10);
+                //fluentwait.IgnoreExceptionTypes(typeof(NoSuchElementException));
+                //fluentwait.Message = "Element does not found";
             }
 
 

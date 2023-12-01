@@ -20,13 +20,16 @@ namespace UrbanLadder.PageObjects
         }
 
         [FindsBy(How = How.Id, Using = "search")]
-        public IWebElement? SearchElement { get; set; }
+        [CacheLookup]
+        private IWebElement? SearchElement { get; set; }
 
         [FindsBy(How = How.ClassName, Using = "header__topBar_logo")]
-        public IWebElement? ULLogo { get; set; }
+        [CacheLookup]
+        private IWebElement? ULLogo { get; set; }
 
         [FindsBy(How = How.XPath, Using = "//a[text()='Careers']")]
-        public IWebElement? Careerlink { get; set; }
+        [CacheLookup]
+        private IWebElement? Careerlink { get; set; }
 
         
 

@@ -18,7 +18,9 @@ namespace UrbanLadder.PageObjects
         }
 
         [FindsBy(How = How.XPath, Using = "//a[@href=\"/help/refund-policy\"]")]
-        public IWebElement? RefundOption { get; set; }
+        [CacheLookup]
+
+        private IWebElement? RefundOption { get; set; }
 
         public void ClickRefundOption()
         {

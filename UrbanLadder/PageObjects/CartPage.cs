@@ -18,18 +18,28 @@ namespace UrbanLadder.PageObjects
             PageFactory.InitElements(driver, this);
         }
             [FindsBy(How = How.XPath, Using = "//select[@id='select_0_quantity']")]
+            [CacheLookup]
+       
             private IWebElement QtyClick { get; set; }
 
             [FindsBy(How = How.XPath, Using = "//select[@id='select_0_quantity']/option[@value=2]")]
-            private IWebElement QtySelect { get; set; }
+        [CacheLookup]
+
+        private IWebElement QtySelect { get; set; }
 
         [FindsBy(How = How.XPath, Using = "(//button[@id='checkout-link'])[1]")]
+        [CacheLookup]
+
         private IWebElement CheckOutBtn { get; set; }
 
         [FindsBy(How = How.ClassName, Using = "icofont-cross_thin")]
+        [CacheLookup]
+
         private IWebElement RemoveFromCartBtn { get; set; }
 
         [FindsBy(How = How.XPath, Using = "//a[text()='Continue shopping']")]
+        [CacheLookup]
+
         private IWebElement ContinueShoppingBtn { get; set; }
 
        public void ClickQtyBtn()

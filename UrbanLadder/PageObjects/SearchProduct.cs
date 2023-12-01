@@ -19,14 +19,20 @@ namespace UrbanLadder.PageObjects
             PageFactory.InitElements(driver, this);
         }
         [FindsBy(How = How.LinkText, Using = "Close")]
-        public IWebElement CloseBtn { get; set; }
+        [CacheLookup]
+
+        private IWebElement CloseBtn { get; set; }
 
         [FindsBy(How = How.XPath, Using = "//*[@id=\"productvariants\"]/div[2]/ul/li[1]/level/span")]
-        public IWebElement Size { get; set; }
+        [CacheLookup]
+
+        private IWebElement Size { get; set; }
         //[FindsBy(How = How.Name, Using = "levelicon icofont-5inches")]
         //public IWebElement Thickness { get; set; }
         [FindsBy(How = How.XPath, Using = "//button[@type='submit']")]
-        public IWebElement AddToCartButton { get; set; }
+        [CacheLookup]
+
+        private IWebElement AddToCartButton { get; set; }
 
         public void ClickCloseBtn()
         {

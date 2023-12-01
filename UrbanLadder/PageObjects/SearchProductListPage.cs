@@ -20,7 +20,9 @@ namespace UrbanLadder.PageObjects
             PageFactory.InitElements(driver, this);
         }
         [FindsBy(How = How.XPath, Using = "//*[@id=\"search-results\"]/div[3]/ul/li[1]/div/div[5]/a/div[1]/span")]
-        public IWebElement SelectProduct { get; set; }
+        [CacheLookup]
+
+        private IWebElement SelectProduct { get; set; }
 
         public SearchProduct ClickSeclectedProduct()
         {

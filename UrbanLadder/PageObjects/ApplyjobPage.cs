@@ -20,37 +20,48 @@ namespace UrbanLadder.PageObjects
         }
 
         [FindsBy(How = How.Id, Using = "//div[@class='css-15mn9qb']//button[text()='Apply Now']")]
-        public IWebElement? ApplyNowBtn { get; set; }
+        [CacheLookup]
+        private IWebElement? ApplyNowBtn { get; set; }
 
         [FindsBy(How = How.Id, Using = "firstName")]
-        public IWebElement? Firstname { get; set; }
+        [CacheLookup]
+        private IWebElement? Firstname { get; set; }
 
         [FindsBy(How = How.Id, Using = "field-2")]
-        public IWebElement? Lastname { get; set; }
+        [CacheLookup]
+        private IWebElement? Lastname { get; set; }
 
         [FindsBy(How = How.Id, Using = "field-3")]
-        public IWebElement? Email { get; set; }
+        [CacheLookup]
+        private IWebElement? Email { get; set; }
 
         [FindsBy(How = How.Id, Using = "field-4")]
-        public IWebElement? MobileNumber { get; set; }
+        [CacheLookup]
+        private IWebElement? MobileNumber { get; set; }
 
         [FindsBy(How = How.Id, Using = "field-5")]
-        public IWebElement? CurrentCTC { get; set; }
+        [CacheLookup]
+        private IWebElement? CurrentCTC { get; set; }
 
         [FindsBy(How = How.Id, Using = "field-6")]
-        public IWebElement? ExpectedCTC { get; set; }
+        [CacheLookup]
+        private IWebElement? ExpectedCTC { get; set; }
 
         [FindsBy(How = How.Id, Using = "field-7")]
-        public IWebElement? Joining { get; set; }
+        [CacheLookup]
+        private IWebElement? Joining { get; set; }
 
         [FindsBy(How = How.Id, Using = "field-8")]
-        public IWebElement? OpportunityClick { get; set; }
+        [CacheLookup]
+        private IWebElement? OpportunityClick { get; set; }
 
         [FindsBy(How = How.XPath, Using = "//select[@name='custom_9436']//option[@value='Job Portal']")]
-        public IWebElement? OpportunitySelect { get; set; }
+        [CacheLookup]
+        private IWebElement? OpportunitySelect { get; set; }
 
         [FindsBy(How = How.ClassName, Using = "css-10c38q4")]
-        public IWebElement? submitBtn { get; set; }
+        [CacheLookup]
+        private IWebElement? submitBtn { get; set; }
 
 
 
@@ -58,12 +69,8 @@ namespace UrbanLadder.PageObjects
         {
             IWebElement element = driver.FindElement(By.XPath("//*[@id=\"__next\"]/div/div/div[1]/div/div[4]/div/div[1]/button"));
             CoreCodes.ScrollIntoView(driver, element);
-            DefaultWait<IWebDriver> fluentwait = new DefaultWait<IWebDriver>(driver);
-            fluentwait.Timeout = TimeSpan.FromSeconds(5);
-            fluentwait.PollingInterval = TimeSpan.FromSeconds(5);
-            fluentwait.IgnoreExceptionTypes(typeof(NoSuchElementException));
-            fluentwait.Message = "Element does not found";
-            //Thread.Sleep(2000);
+            
+            Thread.Sleep(2000);//wait not working
             element.Click();
         }
 
