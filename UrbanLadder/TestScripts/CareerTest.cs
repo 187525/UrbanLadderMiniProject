@@ -37,6 +37,7 @@ namespace UrbanLadder.TestScripts
                         .CreateLogger();
 
             homepage.ClickCareerLink();
+            TakeScreenShot();
             Thread.Sleep(2000);
 
             List<string> nextTab = driver.WindowHandles.ToList();
@@ -46,11 +47,14 @@ namespace UrbanLadder.TestScripts
 
             var jobopeningspage =new JobOpeningsPage(driver);
             jobopeningspage.clicklocationselect();
+            TakeScreenShot();
             Thread.Sleep(2000);
             jobopeningspage.ClickSelectLocation();
+            TakeScreenShot();
             Thread.Sleep(2000);
             jobopeningspage.ClickViewJobBtn();
-         
+            TakeScreenShot();
+
             Thread.Sleep(2000);
 
             List<string> nextTab1 = driver.WindowHandles.ToList();
@@ -59,7 +63,7 @@ namespace UrbanLadder.TestScripts
 
             try
             {
-                //string url = driver.GetCurrenturl();
+                
                 Assert.That(driver.Url.Contains("jobs"));
 
                 Log.Information("Redirection Test passed");
@@ -100,6 +104,7 @@ namespace UrbanLadder.TestScripts
 
                 applyjobpage.ClickSubmitBtn(firstname,lastname,email,mobilenumber,cuurentCTC,expectedCTC, joining);
                 Log.Information("Values Assigned");
+                TakeScreenShot();
                 Thread.Sleep(2000);
                 //DefaultWait<IWebDriver> fluentwait = new DefaultWait<IWebDriver>(driver);
                 //fluentwait.Timeout = TimeSpan.FromSeconds(5);
@@ -110,6 +115,7 @@ namespace UrbanLadder.TestScripts
 
                 applyjobpage.ClickOpportunity();
                 Log.Information("Opprotunity Clicked");
+                TakeScreenShot();
                 Thread.Sleep(3000);
                 //DefaultWait<IWebDriver> fluentwait2 = new DefaultWait<IWebDriver>(driver);
                 //fluentwait.Timeout = TimeSpan.FromSeconds(10);
@@ -119,6 +125,7 @@ namespace UrbanLadder.TestScripts
 
                 applyjobpage.ClickOpportunitySelect();
                 Log.Information("Opportunity selected");
+                TakeScreenShot();
                 Thread.Sleep(3000);
                 //DefaultWait<IWebDriver> fluentwait3 = new DefaultWait<IWebDriver>(driver);
                 //fluentwait.Timeout = TimeSpan.FromSeconds(10);
